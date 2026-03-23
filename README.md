@@ -48,9 +48,14 @@ python main.py llm-full
 ├── llm_bridge.py        OpenAI API integration (full/compact/judge)
 ├── domains/
 │   └── physics.py       Physics domain plugin (theories, isomorphisms, kill tests)
-└── obsidian/
-    └── snippets/
-        └── 7q-scored-callouts.css   Custom callout colors for Obsidian
+├── obsidian/
+│   └── snippets/
+│       └── 7q-scored-callouts.css   Custom callout colors for Obsidian
+├── docs/
+│   └── 7q-explorer.html             Interactive visual explorer (open in browser)
+└── examples/
+    ├── CL-PHY-0001_example.md       Engine-generated scored note
+    └── FP-008_SCORED_CLEAN.md        Reference template (the gold standard)
 ```
 
 ## The Seven Questions
@@ -157,6 +162,18 @@ Three prompt modes for API pipelines:
 python main.py llm-full --model gpt-4o
 python main.py llm-judge --model gpt-4o
 ```
+
+## Interactive Explorer
+
+Open `docs/7q-explorer.html` in any browser. It's a self-contained visual walkthrough of the entire 7Q method with:
+
+- **Forward/Reverse toggle** — see both directions
+- **Three trace examples** — General Relativity, consciousness, entropy/moral decay
+- **Layer filters** — show/hide epistemic types
+- **Click-to-expand** — full detail on every node
+- **Color-coded** — same Q0–Q7 palette as the Obsidian callouts
+
+No server needed. Just open the HTML file.
 
 ## Requirements
 
