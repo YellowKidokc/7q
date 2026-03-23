@@ -21,6 +21,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from intake import run_forward_intake, banner
 from destroy import run_backward_destruction
 from obsidian_writer import write_note, build_full_note
+from html_report import write_html_report
 from scorer import (
     ClaimProfile, EvidenceItem, PredictionItem, DeathTest,
     compute_truth_score, score_summary, machine_block,
@@ -61,6 +62,8 @@ def mode_forward(write_obsidian: bool = True, output_dir: str = None):
     if write_obsidian:
         filepath = write_note(profile, result, mode="forward", output_dir=output_dir)
         print(f"\n  Obsidian note: {filepath}")
+        html_path = write_html_report(profile, result, mode="forward", output_dir=output_dir)
+        print(f"  HTML report:   {html_path}")
 
     return profile, result
 
@@ -72,6 +75,8 @@ def mode_backward(write_obsidian: bool = True, output_dir: str = None):
     if write_obsidian:
         filepath = write_note(profile, result, mode="backward", output_dir=output_dir)
         print(f"\n  Obsidian note: {filepath}")
+        html_path = write_html_report(profile, result, mode="backward", output_dir=output_dir)
+        print(f"  HTML report:   {html_path}")
 
     return profile, result
 
@@ -100,7 +105,7 @@ def mode_llm_full(model: str = "gpt-4o", write_obsidian: bool = True, output_dir
 
         # Save raw response
         if write_obsidian:
-            d = output_dir or r"O:\_Theophysics_v4\David\7Q\scored_output"
+            d = output_dir or os.path.join(os.path.dirname(os.path.abspath(__file__)), "scored_output")
             os.makedirs(d, exist_ok=True)
             filepath = os.path.join(d, f"{claim_id}_llm_full.md")
             with open(filepath, "w", encoding="utf-8") as f:
@@ -204,9 +209,11 @@ def mode_test():
     print()
     print(machine_block(profile, result))
 
-    # Write test note
+    # Write test note + HTML report
     filepath = write_note(profile, result, mode="test")
     print(f"\n  Test note written to: {filepath}")
+    html_path = write_html_report(profile, result, mode="test")
+    print(f"  HTML report:         {html_path}")
 
     return profile, result
 

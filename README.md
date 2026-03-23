@@ -45,6 +45,7 @@ python main.py llm-full
 ├── intake.py            Forward mode interactive CLI (Q0→Q7)
 ├── destroy.py           Backward destruction mode (Q7→Q1)
 ├── obsidian_writer.py   Generates .md notes with custom callout formatting
+├── html_report.py       Per-claim HTML cover pages (dark theme, SVG tree)
 ├── llm_bridge.py        OpenAI API integration (full/compact/judge)
 ├── domains/
 │   └── physics.py       Physics domain plugin (theories, isomorphisms, kill tests)
@@ -52,7 +53,10 @@ python main.py llm-full
 │   └── snippets/
 │       └── 7q-scored-callouts.css   Custom callout colors for Obsidian
 ├── docs/
-│   └── 7q-explorer.html             Interactive visual explorer (open in browser)
+│   ├── 7q-explorer.html             Interactive visual explorer
+│   ├── 7q-evidence.html             Evidence protocol deep dive
+│   ├── 7q-reverse.html              Reverse method walkthrough
+│   └── 7q-tree.html                 Animated tree visualization
 └── examples/
     ├── CL-PHY-0001_example.md       Engine-generated scored note
     └── FP-008_SCORED_CLEAN.md        Reference template (the gold standard)
